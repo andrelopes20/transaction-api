@@ -1,0 +1,1 @@
+create table "user" (user_id integer primary key auto_increment,user_name varchar,password varchar,user_email varchar,user_register varchar, user_type varchar, user_balance float)
