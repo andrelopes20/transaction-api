@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,7 +53,7 @@ public class UserController {
         ObjectMapper mapper = new ObjectMapper();
         List<UserModel> listUser = userService.findAll();
 
-        return ResponseEntity.ok(listUser.stream().map(o -> mapper.convertValue(o, UserDTO.class)).collect(Collectors.toList()));
+        return ResponseEntity.ok(listUser.stream().map(UserDTO::new).toList());
     }
 
 }

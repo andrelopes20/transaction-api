@@ -7,6 +7,7 @@ import jakarta.transaction.Transactional;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,6 +23,9 @@ public class UserService{
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
     public void saveTransaction(TransactionDTO transactionDTO) throws Exception {
@@ -82,7 +86,15 @@ public class UserService{
 
     public void save(UserModel userModel) {
 
+        encodeUserPassword(userModel);
         userRepository.save(userModel);
+
+    }
+
+    private UserModel encodeUserPassword(UserModel userModel) {
+
+        userModel.setUserPassword(passwordEncoder.encode(userModel.getPassword()));
+        return userModel;
 
     }
 

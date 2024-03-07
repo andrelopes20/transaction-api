@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServic
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories("com.andrelopes.transaction_api.repositories")
-@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, UserDetailsServiceAutoConfiguration.class})
+@SpringBootApplication()
 public class TransactionApiApplication {
 
 	public static void main(String[] args) {
